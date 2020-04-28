@@ -7,7 +7,7 @@
         <div class="container-fluid">
 
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
+            <!-- <a href="#" class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1">Rembourssement client</h5>
                   <small>Date de la demande: 21/01/2019</small>
@@ -50,7 +50,35 @@
                 </div>
                 <p class="mb-1">Contacter le transporteur pour valider avec lui la date de la livraison de la marchandise</p>
                 <small><i class="fas fa-check-square"></i> Cloturée le: 30/12/2018</small>
+            </a> -->
+
+          <%
+            for(var i = 0; i < tasksList.length; i++){
+              var divColor = '';
+              var date = '';
+              if(tasksList[i].dateCloture != null){
+                divColor = "list-group-item-success";
+                date = 'Cloturée le: ' + dateFormat(tasksList[i].dateCloture);
+              } else if (tasksList[i].dateCloture == null && tasksList[i].dateDue < new Date()) {
+                divColor = "list-group-item-danger";
+                date = 'Échéance dépassée : ' + dateFormat(tasksList[i].dateDue);
+              } else {
+                divColor = "list-group-item-danger";
+                date = 'Échéance : ' + dateFormat(tasksList[i].dateDue);
+              }
+
+          %>
+            <a href="#" class="list-group-item list-group-item-action <%= divColor %>">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"><%= tasksList[i].name %> </h5>
+                  <small>Date de la demande: <%= dateFormat(tasksList[i].dateInsert) %></small>
+                </div>
+                <p class="mb-1"><%= tasksList[i].owner %></p>
+                <small><i class="fas fa-check-square"></i><%= date %></small>
             </a>
+          <%
+            }
+          %>
 
           </div>
 

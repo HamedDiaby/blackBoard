@@ -50,4 +50,16 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//fonction format date
+app.locals.dateFormat = function(date){
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  if(day <= 9)
+    day = '0' + day;
+  if(month <= 9)
+    month = '0' + month;
+  var year = date.getFullYear();
+  return day+'/'+month+'/'+year;
+};
+
 module.exports = app;

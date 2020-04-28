@@ -37,7 +37,7 @@
                       var date_payment = '';
                       if(order.status_payment == 'validated'){
                         var status = "status-success";
-                        date_payment = order.date_payment;
+                        date_payment = dateFormat(order.date_payment);
                       } else if (order.status_payment == 'refused'){
                         var status = "status-danger";
                       } else if (order.status_payment == 'waiting'){
@@ -45,14 +45,14 @@
                       }
                       if(order.status_shipment == true){
                         var status_shipment = "status-success";
-                        var date_shipment = order.date_shipment;
+                        var date_shipment = dateFormat(order.date_shipment);
                       } else {
                         var status_shipment = "status-danger";
                         var date_shipment = "";
                       }
                     %>
                       <tr>
-                        <td><%= order.date_insert %></td>
+                        <td><%= dateFormat(order.date_insert) %></td>
                         <td><%= order.total %>€</td>
                         <td><%= order.shipping_cost %>€</td>
                         <td class="<%= status %>"><i class="fas fa-circle"></i></td>

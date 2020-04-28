@@ -50,7 +50,7 @@
                     var date_payment = '';
                     if(ordersList[i].status_payment == 'validated'){
                       var status = "status-success";
-                      date_payment = ordersList[i].date_payment;
+                      date_payment = dateFormat(ordersList[i].date_payment);
                     } else if (ordersList[i].status_payment == 'refused'){
                       var status = "status-danger";
                     } else if (ordersList[i].status_payment == 'waiting'){
@@ -58,14 +58,14 @@
                     }
                     if(ordersList[i].status_shipment == true){
                       var status_shipment = "status-success";
-                      var date_shipment = ordersList[i].date_shipment;
+                      var date_shipment = dateFormat(ordersList[i].date_shipment);
                     } else {
                       var status_shipment = "status-danger";
                       var date_shipment = "";
                     }
                 %>
                     <tr>
-                      <td><%= ordersList[i].date_insert %></td>
+                      <td><%= dateFormat(ordersList[i].date_insert) %></td>
                       <td><%= ordersList[i].total %>€</td>
                       <td><%= ordersList[i].shipping_cost %>€</td>
                       <td class="<%= status %>"><i class="fas fa-circle"></i></td>
